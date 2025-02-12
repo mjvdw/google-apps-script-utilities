@@ -41,18 +41,17 @@ class Slack {
      * This function is responsible for handling the interactivity of the Slack bot.
      * 
      * @param event the event object that is passed to the function.
-     * @param callbackFunction the function that is called when the interactivity is handled.
      * @returns the result of the callback function.
      * 
      */
-    handleInteractivity(event: GoogleAppsScript.Events.DoPost, callbackId: string) {
-        let payload = JSON.parse(event.parameter.payload);
+    handleInteractivity(event: GoogleAppsScript.Events.DoPost) {
+        let callbackId: string = JSON.parse(event.parameter.payload).callback_id
 
         let callbackFunction: { [key: string]: Function } = {
             "count_emoji": CountMoji.receiveMessage
         };
 
-        return callbackFunction[callbackId](payload);
+        return callbackFunction[callbackId](event);
     }
 
 

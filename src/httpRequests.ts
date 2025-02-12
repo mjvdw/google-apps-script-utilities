@@ -18,8 +18,7 @@
  */
 function doPost(e: GoogleAppsScript.Events.DoPost) {
     var slack = new Slack();
-    let callbackId = JSON.parse(e.parameter.payload).callback_id;
-    slack.handleInteractivity(e, callbackId);
+    slack.handleInteractivity(e);
 
     // Return an HTTP 200 OK response
     return ContentService.createTextOutput()
