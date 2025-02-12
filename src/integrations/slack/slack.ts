@@ -108,7 +108,17 @@ class Slack {
     }
 
 
+    getUserById(userId: string) {
+        let response = this._send_request(
+            "https://slack.com/api/users.identity",
+            {
+                user: userId,
+            },
+            "get"
+        );
 
+        return response;
+    }
 
 
     /**
