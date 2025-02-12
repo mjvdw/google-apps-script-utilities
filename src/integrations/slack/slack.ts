@@ -79,3 +79,7 @@ class Slack {
         return response;
     }
 }
+
+function connectSlack() {
+    return new Slack();
+}

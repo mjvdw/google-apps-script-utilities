@@ -19,7 +19,12 @@
 function doPost(e: GoogleAppsScript.Events.DoPost) {
     var slack = new Slack();
     let callbackId = JSON.parse(e.parameter.payload).callback_id;
-    return slack.handleInteractivity(e, callbackId);
+    slack.handleInteractivity(e, callbackId);
+
+    // Return an HTTP 200 OK response
+    return ContentService.createTextOutput()
+        .setMimeType(ContentService.MimeType.JSON)
+        .setContent(JSON.stringify({ status: "OK" }));
 }
 /**
  * At this stage there is no intention of using this function to present
@@ -29,5 +34,8 @@ function doPost(e: GoogleAppsScript.Events.DoPost) {
  * @returns 200 code to say it's successfully received the request.
  */
 function doGet() {
-    return 200;
+    // Return an HTTP 200 OK response
+    return ContentService.createTextOutput()
+        .setMimeType(ContentService.MimeType.JSON)
+        .setContent(JSON.stringify({ status: "OK" }));
 }
