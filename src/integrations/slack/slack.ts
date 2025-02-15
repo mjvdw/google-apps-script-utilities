@@ -110,7 +110,7 @@ class Slack {
 
     getUserById(userId: string) {
         let response = this._send_request(
-            "https://slack.com/api/users.identity",
+            "https://slack.com/api/users.profile.get",
             {
                 user: userId,
             },
