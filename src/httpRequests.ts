@@ -17,13 +17,17 @@
  * @returns
  */
 function doPost(e: GoogleAppsScript.Events.DoPost) {
-    var slack = new Slack();
-    slack.handleInteractivity(e);
+
+    try {
+        var slack = new Slack();
+        slack.handleInteractivity(e);
+    } catch (e) {
+        console.error("Error:", e);
+    }
 
     // Return an HTTP 200 OK response
-    return ContentService.createTextOutput()
-        .setMimeType(ContentService.MimeType.JSON)
-        .setContent(JSON.stringify({ status: "OK" }));
+    return ContentService.createTextOutput("OK")
+        .setMimeType(ContentService.MimeType.TEXT);
 }
 /**
  * At this stage there is no intention of using this function to present
@@ -34,7 +38,6 @@ function doPost(e: GoogleAppsScript.Events.DoPost) {
  */
 function doGet() {
     // Return an HTTP 200 OK response
-    return ContentService.createTextOutput()
-        .setMimeType(ContentService.MimeType.JSON)
-        .setContent(JSON.stringify({ status: "OK" }));
+    return ContentService.createTextOutput("OK")
+        .setMimeType(ContentService.MimeType.TEXT);
 }

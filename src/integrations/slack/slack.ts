@@ -45,13 +45,16 @@ class Slack {
      * 
      */
     handleInteractivity(event: GoogleAppsScript.Events.DoPost) {
-        let callbackId: string = JSON.parse(event.parameter.payload).callback_id
 
+
+        // Parse the payload to get the callback ID.
+        let callbackId: string = JSON.parse(event.parameter.payload).callback_id
         let callbackFunction: { [key: string]: Function } = {
             "count_emoji": CountMoji.receiveMessage
         };
 
         return callbackFunction[callbackId](event);
+
     }
 
 
