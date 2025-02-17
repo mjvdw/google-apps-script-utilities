@@ -334,3 +334,7 @@ interface Button {
 function connectSlack() {
     return new Slack();
 }
+
+function blockComponents() {
+    return Slack.blockComponents;
+}
