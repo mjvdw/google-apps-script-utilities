@@ -1,8 +1,8 @@
 class Slack {
     token!: string; // The API token for the Slack API.
 
-    constructor() {
-        this.token = env("SGRC_SLACK_BOT_TOKEN") ?? "";
+    constructor(token: string) {
+        this.token = token;
     }
 
 
@@ -331,8 +331,8 @@ interface Button {
     style?: string;
 }
 
-function connectSlack() {
-    return new Slack();
+function connectSlack(token: string): Slack {
+    return new Slack(token);
 }
 
 function blockComponents() {
