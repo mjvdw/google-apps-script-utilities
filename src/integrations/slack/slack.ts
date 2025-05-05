@@ -123,6 +123,29 @@ class Slack {
         return response;
     }
 
+    /**
+     * Given a user's email address, query the Slack API to get their Slack user ID.
+     *
+     * @param email
+     * @returns the user ID for the user with the given email address.
+     */
+    getUserIdByEmail(email: string): string {
+        if (!email) return "";
+
+        let url: string = `https://slack.com/api/users.lookupByEmail?email=${email}`;
+
+        let options: object = {
+            method: "get",
+            contentType: "application/x-www-form-urlencoded",
+            headers: {
+                Authorization: "Bearer " + this.token,
+            },
+        };
+
+        let response = UrlFetchApp.fetch(url, options);
+        return JSON.parse(response.getContentText()).user?.id ?? undefined;
+    }
+
 
     /**
      * A header object linking to all underlying block types that can be used to
